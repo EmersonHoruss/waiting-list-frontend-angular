@@ -1,0 +1,83 @@
+<!-- <table mat-table [dataSource]="dataSource" class="w-full">
+  <ng-container
+    *ngFor="let column of displayedColumns"
+    [matColumnDef]="column"
+    [sticky]="column === 'nombre'"
+    [stickyEnd]="column === 'correo'"
+  >
+    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+    <td mat-cell *matCellDef="let element" class="min-w-[150px]">
+      {{ element[column] }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table> -->
+<table mat-table [dataSource]="tableBody.getData()" class="w-full">
+  <ng-container
+    *ngFor="let column of tableBody.getColumns()"
+    [matColumnDef]="column.getName()"
+    [sticky]="column.getSticky()"
+    [stickyEnd]="column.getStickyEnd()"
+  >
+    <th
+      mat-header-cell
+      *matHeaderCellDef
+      style="padding: 0 1.5rem"
+      [ngStyle]="column.getStyleHeader()"
+    >
+      {{ column.getDisplayed() }}
+    </th>
+    <td
+      mat-cell
+      *matCellDef="let element; let i = index"
+      style="padding: 0 1.5rem"
+      [ngStyle]="column.getStyleData()"
+    >
+      <ng-container *ngIf="column.getType() === EColumnType.index">
+        {{ i + startIndex }}
+      </ng-container>
+      <ng-container *ngIf="column.getType() === EColumnType.string">
+        {{ element[column.getName()] }}
+      </ng-container>
+      <ng-container *ngIf="column.getType() === EColumnType.buttons">
+        <div class="flex gap-4">
+          <ng-container *ngFor="let button of column.getButtons()">
+            <app-dinosour-button
+              [button]="button"
+              (on_click)="handleButtonClick($event, element)"
+            ></app-dinosour-button>
+          </ng-container>
+        </div>
+      </ng-container>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="loading_and_not_found_row">
+    <td
+      mat-footer-cell
+      *matFooterCellDef
+      [attr.colspan]="tableBody.getColumns().length"
+    >
+      <div *ngIf="tableBody.getIsLoading()">Loading</div>
+      <div
+        *ngIf="!tableBody.getIsLoading() && tableBody.getData().length === 0"
+      >
+        Without data
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="tableBody.getNameColumns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableBody.getNameColumns()"></tr>
+  <tr
+    mat-footer-row
+    *matFooterRowDef="['loading_and_not_found_row']"
+    [ngClass]="{
+      hidden: !(
+        tableBody.getIsLoading() ||
+        (!tableBody.getIsLoading() && tableBody.getData().length === 0)
+      )
+    }"
+  ></tr>
+</table>

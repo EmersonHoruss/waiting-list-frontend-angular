@@ -1,0 +1,24 @@
+<div class="w-full h-full" id="container" #container>
+  <header #header id="header" class="flex flex-col gap-2">
+    <div class="mb-4">
+      <h2 class="m-0">Lista de {{ entity }}</h2>
+    </div>
+    <app-dinosour-filter-clasic
+      [kindFilters]="filters"
+      (on_filter)="handleFilter($event)"
+    ></app-dinosour-filter-clasic>
+  </header>
+  <div #body id="body">
+    <app-dinosour-table-body
+      [tableBody]="table"
+      [startIndex]="startIndex"
+      (on_click)="handleClick($event)"
+    ></app-dinosour-table-body>
+  </div>
+  <div #paginator id="paginator">
+    <app-dinosour-paginator
+      [totalElements]="total"
+      (on_page)="handlePage($event)"
+    ></app-dinosour-paginator>
+  </div>
+</div>
