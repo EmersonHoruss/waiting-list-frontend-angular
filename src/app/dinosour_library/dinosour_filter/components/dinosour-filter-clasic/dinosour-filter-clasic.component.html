@@ -1,0 +1,10 @@
+<div class="flex items-center gap-4">
+  <app-dinosour-form-body
+    [form]="form"
+    (on_changes)="handleChanges($event)"
+  ></app-dinosour-form-body>
+  <app-dinosour-button
+    [button]="filterButton"
+    (on_click)="handleFilter($event)"
+  ></app-dinosour-button>
+</div>
