@@ -1,0 +1,10 @@
+.mat-toolbar {
+  padding: 0 !important;
+  display: flex;
+  justify-content: baseline !important;
+  align-items: baseline !important;
+}
+button {
+  display: flex;
+  padding: 0.5rem 1rem;
+}
