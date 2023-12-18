@@ -1,1 +1,21 @@
-<p>user works!</p>
+<div class="w-full h-full grid grid-cols-3 gap-8">
+  <div class="col-span-1">
+    <app-dinosour-form
+      [form]="form"
+      [entity]="entityForm"
+      [service]="service"
+      (on_created)="handleCreated($event)"
+      (on_updated)="handleUpdated($event)"
+    ></app-dinosour-form>
+  </div>
+  <div class="col-span-2">
+    <app-dinosour-table
+      [table]="table"
+      [filters]="filters"
+      [entity]="entityTable"
+      [service]="service"
+      [triggerUpdate]="triggerUpdate"
+      (on_edit)="handleEdit($event)"
+    ></app-dinosour-table>
+  </div>
+</div>
