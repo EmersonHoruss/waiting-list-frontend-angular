@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center gap-4">
+  <mat-progress-spinner [mode]="'indeterminate'" [diameter]="80">
+  </mat-progress-spinner>
+  <ng-container *ngIf="!!dialogLoading.getTitle()">
+    <span class="text-lg font-medium">{{ dialogLoading.getTitle() }}</span>
+  </ng-container>
+  <ng-container *ngIf="!!dialogLoading.getDescription()">
+    <span class="text-base">{{ dialogLoading.getDescription() }}</span>
+  </ng-container>
+</div>

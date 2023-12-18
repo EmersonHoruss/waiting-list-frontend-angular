@@ -1,0 +1,45 @@
+<div class="flex flex-col">
+  <div mat-dialog-title>
+    <div class="flex justify-between items-center">
+      <div class="flex gap-2 items-center">
+        <mat-icon
+          [ngClass]="
+            'icon-center text-2xl text-' + dialogMessage.getType().getColor()
+          "
+        >
+          {{ dialogMessage.getType().getIcon() }}
+        </mat-icon>
+        <span [ngClass]="'text-xl text-' + dialogMessage.getType().getColor()">
+          {{ dialogMessage.getType().getName() }}
+        </span>
+      </div>
+      <app-dinosour-button
+        [button]="Xbutton"
+        (on_click)="handleClose($event)"
+      ></app-dinosour-button>
+    </div>
+  </div>
+  <div mat-dialog-content>
+    <ng-container *ngIf="!!dialogMessage.getTitle()">
+      <p class="text-lg font-medium">{{ dialogMessage.getTitle() }}</p>
+    </ng-container>
+    <ng-container *ngIf="!!dialogMessage.getDescription()">
+      <p class="text-base">{{ dialogMessage.getDescription() }}</p>
+    </ng-container>
+  </div>
+  <ng-container
+    *ngIf="!!dialogMessage.getType().getButtons().length"
+    mat-dialog-actions
+  >
+    <div class="flex gap-4 justify-end mt-1">
+      <ng-container
+        *ngFor="let button of dialogMessage.getType().getButtons(); index as i"
+      >
+        <app-dinosour-button
+          [button]="button"
+          (on_click)="handleClose($event)"
+        ></app-dinosour-button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,15 @@
+export enum EDialogMessage {
+  createFailedBecauseWrongForm = 'createFailedBecauseWrongForm',
+  createFailedAfterSubmit = 'createFailedAfterSubmit',
+  createSuccess = 'createSuccess',
+  updateFailedBecauseWrongForm = 'updateFailedBecauseWrongForm',
+  updateFailedBecauseNoChangesDone = 'updateFailedBecauseNoChangesDone',
+  updateFailedAfterSubmit = 'updateFailedAfterSubmit',
+  updateSuccess = 'updateSuccess',
+  cancelFailedBecauseNoChangesDone = 'cancelFailedBecauseNoChangesDone',
+  cancelWarning = 'cancelWarning',
+  cancelSuccess = 'cancelSuccess',
+  deleteWarning = "deleteWarning",
+  deleteSuccess = 'deleteSuccess',
+  deleteFailed = 'deleteFailed',
+}
