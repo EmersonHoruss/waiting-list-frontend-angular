@@ -1,0 +1,16 @@
+<div>
+  <app-dinosour-form-body
+    [form]="form"
+    [entity]="entity"
+    (on_changes)="handleChanges($event)"
+    [reset]="reset"
+    [markAsTouched]="markAsTouched"
+    (on_clean)="handleClean($event)"
+  ></app-dinosour-form-body>
+  <app-dinosour-form-actions
+    (on_create)="handleCreate($event)"
+    (on_update)="handleUpdate($event)"
+    (on_cancel)="handleCancel($event)"
+    [shouldCreate]="shouldCreate"
+  ></app-dinosour-form-actions>
+</div>

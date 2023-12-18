@@ -1,0 +1,57 @@
+<form class="w-full" [formGroup]="formGroup" [ngClass]="form.getClazz()">
+  <ng-container *ngIf="!form.getTitleHidden()">
+    <div class="flex gap-2 items-center mb-4">
+      <h2 class="m-0">{{ entity }}</h2>
+      <app-dinosour-button
+        [button]="cleanButton"
+        (on_click)="handleClean($event)"
+      ></app-dinosour-button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!form.getInputsHidden()">
+    <ng-container *ngFor="let input of form.getInputs()">
+      <mat-form-field
+        appearance="outline"
+        *ngIf="input.getType() !== EInputType.identifier"
+        [ngClass]="input.getConstraints().length ? '' : 'no-contraints'"
+      >
+        <mat-label>{{ input.getLabel() }}</mat-label>
+        <input
+          *ngIf="input.getType() === EInputType.input"
+          matInput
+          [formControlName]="input.getLabel()"
+          [placeholder]="input.getPlaceholder()"
+          autocomplete="off"
+          #inputField
+          [attr.label]="input.getLabel()"
+        />
+        <mat-select
+          *ngIf="input.getType() === EInputType.select"
+          [formControlName]="input.getLabel()"
+          [placeholder]="input.getPlaceholder()"
+          [disableOptionCentering]="true"
+          #inputField
+          [attr.label]="input.getLabel()"
+        >
+          <mat-option
+            *ngFor="let item of input.getData()"
+            [value]="item.getKey()"
+          >
+            {{ item.getValue() }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <ng-container *ngFor="let constraint of input.getConstraints()">
+            <ng-container
+              *ngIf="
+                formGroup.get(input.getLabel())?.hasError(constraint.getType())
+              "
+            >
+              {{ constraint.getMessage() }}
+            </ng-container>
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </ng-container>
+  </ng-container>
+</form>
