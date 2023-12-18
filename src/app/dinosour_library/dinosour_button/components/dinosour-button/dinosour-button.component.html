@@ -1,0 +1,62 @@
+<ng-container [ngSwitch]="button.getType()">
+  <button
+    *ngSwitchCase="EButtonType.classic"
+    mat-button
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+    type="button"
+  >
+    {{ button.getName() }}
+  </button>
+  <button
+    type="button"
+    *ngSwitchCase="EButtonType.flat"
+    mat-flat-button
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+  >
+    {{ button.getName() }}
+  </button>
+  <button
+    type="button"
+    *ngSwitchCase="EButtonType.raised"
+    mat-raised-button
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+  >
+    {{ button.getName() }}
+  </button>
+  <button
+    type="button"
+    *ngSwitchCase="EButtonType.stroked"
+    mat-stroked-button
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+  >
+    {{ button.getName() }}
+  </button>
+  <button
+    type="button"
+    *ngSwitchCase="EButtonType.icon"
+    mat-icon-button
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+  >
+    <mat-icon>{{ button.getIcon() }}</mat-icon>
+  </button>
+  <button
+    type="button"
+    *ngSwitchCase="EButtonType.miniFab"
+    mat-mini-fab
+    (click)="handleClick($event)"
+    [color]="button.getColor()"
+    [ngClass]="button.getClazz()"
+  >
+    <mat-icon>{{ button.getIcon() }}</mat-icon>
+  </button>
+</ng-container>
